@@ -1,6 +1,8 @@
 package com.cineholic.spotlight.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -22,6 +24,8 @@ public class Filme implements Serializable{
 	private Double duration;
 	private String sinopse;
 	private String cartazUrl;
+	
+	private List<Sessao> sessoes = new ArrayList<>();
 	
 	public Filme() {
 		
@@ -96,6 +100,10 @@ public class Filme implements Serializable{
 
 	public void setCartazUrl(String cartazUrl) {
 		this.cartazUrl = cartazUrl;
+	}
+
+	public List<Sessao> getSessoes() {
+		return sessoes;
 	}
 
 
