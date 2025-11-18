@@ -12,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -22,15 +24,17 @@ public class Sessao implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private LocalDateTime horario;
 	private Double preco;
 	
+	@ManyToOne
+	@JoinColumn(name = "filme_id")
 	private Filme filme;
-	private Sala sala;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "sessao")
-	private List<AssentoSessao> assentos = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "sala_id")
+	private Sala sala;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "sessao")
@@ -40,13 +44,14 @@ public class Sessao implements Serializable{
 		
 	}
 
-	public Sessao(Long id, LocalDateTime horario, Double preco, Filme filme, Sala sala) {
+	public Sessao(Long id, LocalDateTime horario, Double preco, Filme filme, Sala sala, List<Ingresso> ingressos) {
 		super();
 		this.id = id;
 		this.horario = horario;
 		this.preco = preco;
 		this.filme = filme;
 		this.sala = sala;
+		this.ingressos = ingressos;
 	}
 
 	public Long getId() {
@@ -89,6 +94,18 @@ public class Sessao implements Serializable{
 		this.sala = sala;
 	}
 
+	public List<Ingresso> getIngressos() {
+		return ingressos;
+	}
+
+	public void setIngressos(List<Ingresso> ingressos) {
+		this.ingressos = ingressos;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -105,6 +122,5 @@ public class Sessao implements Serializable{
 		Sessao other = (Sessao) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }

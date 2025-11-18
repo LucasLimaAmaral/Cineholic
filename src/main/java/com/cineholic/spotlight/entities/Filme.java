@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.cineholic.spotlight.enums.Genero;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +23,8 @@ public class Filme implements Serializable{
 	private Long id;
 	
 	private String titulo;
-	private String genero;
-	private Double duration;
+	private Genero genero;
+	private Integer duration;
 	private String sinopse;
 	private String cartazUrl;
 	
@@ -33,9 +35,7 @@ public class Filme implements Serializable{
 		
 	}
 
-
-	public Filme(Long id, String titulo, String genero, Double duration, String sinopse, String cartazUrl) {
-		super();
+	public Filme(Long id, String titulo, Genero genero, Integer duration, String sinopse, String cartazUrl) {
 		this.id = id;
 		this.titulo = titulo;
 		this.genero = genero;
@@ -44,61 +44,49 @@ public class Filme implements Serializable{
 		this.cartazUrl = cartazUrl;
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public String getTitulo() {
 		return titulo;
 	}
-
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
-
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
-
-	public void setGenero(String genero) {
+	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
 
-
-	public Double getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-
-	public void setDuration(Double duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
-
 
 	public String getSinopse() {
 		return sinopse;
 	}
 
-
 	public void setSinopse(String sinopse) {
 		this.sinopse = sinopse;
 	}
 
-
 	public String getCartazUrl() {
 		return cartazUrl;
 	}
-
 
 	public void setCartazUrl(String cartazUrl) {
 		this.cartazUrl = cartazUrl;
@@ -108,12 +96,13 @@ public class Filme implements Serializable{
 		return sessoes;
 	}
 
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cartazUrl, duration, genero, id, sinopse, titulo);
+	public void setSessoes(List<Sessao> sessoes) {
+		this.sessoes = sessoes;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
