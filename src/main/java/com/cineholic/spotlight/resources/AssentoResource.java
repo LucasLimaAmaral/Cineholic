@@ -1,0 +1,33 @@
+package com.cineholic.spotlight.resources;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cineholic.spotlight.entities.Assento;
+import com.cineholic.spotlight.services.AssentoService;
+
+@RestController
+@RequestMapping(value = "/assentos")
+public class AssentoResource {
+	
+	@Autowired
+	private AssentoService service;
+	
+	@GetMapping
+	public ResponseEntity<List<Assento>> findAll(){
+		List<Assento> list = service.findAll();
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Assento> findById(@PathVariable Long id){
+		Assento obj = service.findById(id);
+		return ResponseEntity.ok().body(obj);
+	}
+}
