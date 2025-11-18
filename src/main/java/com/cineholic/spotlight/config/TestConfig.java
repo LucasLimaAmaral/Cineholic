@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.cineholic.spotlight.entities.Filme;
+import com.cineholic.spotlight.enums.Genero;
 import com.cineholic.spotlight.repositories.FilmeRepository;
 
 @Configuration
@@ -18,43 +19,45 @@ public class TestConfig implements CommandLineRunner{
 	private FilmeRepository filmeRepository;
 	
 	public void run(String... args) throws Exception{
+		// Exemplo 1: Ficção Científica
 		Filme filme1 = new Filme(
-	            null, // id
-	            "O Início", // titulo
-	            "Ficção Científica/Ação", // genero
-	            2.48, // duration (em horas, 2 horas e 28 minutos)
-	            "Um ladrão que rouba segredos corporativos através de tecnologia de sonho é encarregado de plantar uma ideia na mente de um CEO.", // sinopse
-	            "http://example.com/cartaz/inicio.jpg" // cartazUrl
-	        );
-	        
-	        // Exemplo 2: Filme de Comédia Romântica
-	        Filme filme2 = new Filme(
-	            null, 
-	            "Loucamente Apaixonados", 
-	            "Comédia Romântica", 
-	            1.75, // 1 hora e 45 minutos
-	            "Dois estudantes universitários se apaixonam e lutam para manter seu relacionamento vivo depois que um deles é deportado.", 
-	            "http://example.com/cartaz/apaixonados.png"
-	        );
-	        
-	        // Exemplo 3: Filme de Animação/Aventura
-	        Filme filme3 = new Filme(
-	            null, 
-	            "A Lenda do Tesouro Perdido", 
-	            "Animação/Aventura", 
-	            1.55, // 1 hora e 33 minutos
-	            "Um jovem aventureiro e seus amigos embarcam em uma jornada épica para encontrar um tesouro lendário e proteger seu reino.", 
-	            "http://example.com/cartaz/tesouro.gif"
-	        );
-	        
-	        // Exemplo 4: Usando o construtor padrão e setters
-	        Filme filme4 = new Filme();
-	        filme4.setId(null);
-	        filme4.setTitulo("Mistério na Mansão");
-	        filme4.setGenero("Suspense/Drama");
-	        filme4.setDuration(2.05); // 2 horas e 3 minutos
-	        filme4.setSinopse("Um detetive investiga um assassinato misterioso que ocorre durante uma tempestade em uma mansão isolada.");
-	        filme4.setCartazUrl("http://example.com/cartaz/misterio.webp");
+		    1L,
+		    "A Origem",
+		    Genero.FICCAO_CIENTIFICA,
+		    148,
+		    "Um ladrão que rouba segredos corporativos através do uso de tecnologia de compartilhamento de sonhos.",
+		    "https://img.cinema.com/posters/a-origem.jpg"
+		);
+
+		// Exemplo 2: Animação
+		Filme filme2 = new Filme(
+		    2L,
+		    "O Rei Leão",
+		    Genero.ANIMACAO,
+		    88,
+		    "O príncipe leão Simba e seu pai são alvos de seu tio amargo, que quer ascender ao trono.",
+		    "https://img.cinema.com/posters/rei-leao.jpg"
+		);
+
+		// Exemplo 3: Drama/Crime
+		Filme filme3 = new Filme(
+		    3L,
+		    "O Poderoso Chefão",
+		    Genero.DRAMA,
+		    175,
+		    "O patriarca idoso de uma dinastia do crime organizado transfere o controle de seu império clandestino para seu filho relutante.",
+		    "https://img.cinema.com/posters/godfather.jpg"
+		);
+
+		// Exemplo 4: Terror
+		Filme filme4 = new Filme(
+		    4L,
+		    "O Iluminado",
+		    Genero.TERROR,
+		    146,
+		    "Uma família se dirige a um hotel isolado para o inverno, onde uma presença maligna influencia o pai à violência.",
+		    "https://img.cinema.com/posters/shining.jpg"
+		);
 	        
 	        filmeRepository.saveAll(Arrays.asList(filme1, filme2, filme3, filme4));
 	}

@@ -14,73 +14,75 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Sala implements Serializable{
+public class Usuario implements Serializable{
 	
-
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String numero;
-	private Integer capacidade;
+	private String nome;
+	private String email;
+	private String senha;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "sala")
-	private List<Sessao> sessoes = new ArrayList<>();
+	@OneToMany(mappedBy = "usuario")
+	private List<Ingresso> ingressos = new ArrayList<>();
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "sala")
-	private List<Assento> assentos = new ArrayList<>();
-	
-	public Sala() {
+	public Usuario() {
 		
 	}
 
-	public Sala(Long id, String numero, Integer capacidade) {
+	public Usuario(Long id, String nome, String email, String senha) {
 		super();
 		this.id = id;
-		this.numero = numero;
-		this.capacidade = capacidade;
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-	public String getNumero() {
-		return numero;
+	public String getNome() {
+		return nome;
 	}
 
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-
-	public Integer getCapacidade() {
-		return capacidade;
+	public String getEmail() {
+		return email;
 	}
 
-
-	public void setCapacidade(Integer capacidade) {
-		this.capacidade = capacidade;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Ingresso> getIngressos() {
+		return ingressos;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(capacidade, id, numero);
+		return Objects.hash(email, id);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,10 +92,9 @@ public class Sala implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sala other = (Sala) obj;
-		return Objects.equals(capacidade, other.capacidade) && Objects.equals(id, other.id)
-				&& Objects.equals(numero, other.numero);
+		Usuario other = (Usuario) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
 	}
-	
+
 	
 }

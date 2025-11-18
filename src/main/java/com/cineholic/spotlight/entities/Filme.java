@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.cineholic.spotlight.enums.Genero;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Filme implements Serializable{
 	private String sinopse;
 	private String cartazUrl;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "filme")
 	private List<Sessao> sessoes = new ArrayList<>();
 	
