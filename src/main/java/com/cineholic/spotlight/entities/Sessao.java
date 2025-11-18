@@ -2,13 +2,17 @@ package com.cineholic.spotlight.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Sessao implements Serializable{
@@ -21,10 +25,16 @@ public class Sessao implements Serializable{
 	private LocalDateTime horario;
 	private Double preco;
 	
-	@ManyToOne
 	private Filme filme;
-	
 	private Sala sala;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "sessao")
+	private List<AssentoSessao> assentos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "sessao")
+	private List<Ingresso> ingressos = new ArrayList<Ingresso>();
 	
 	public Sessao() {
 		

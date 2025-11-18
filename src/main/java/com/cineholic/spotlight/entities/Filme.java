@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Filme implements Serializable{
@@ -25,6 +26,7 @@ public class Filme implements Serializable{
 	private String sinopse;
 	private String cartazUrl;
 	
+	@OneToMany(mappedBy = "filme")
 	private List<Sessao> sessoes = new ArrayList<>();
 	
 	public Filme() {
