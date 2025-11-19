@@ -2,8 +2,8 @@ package com.cineholic.spotlight.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cineholic.spotlight.entities.Sala;
+import com.cineholic.spotlight.entities.Seat;
 
-public interface SalaRepository extends JpaRepository<Sala, Long>{
+public interface SeatRepository extends JpaRepository<Seat, Long>{
 
 }

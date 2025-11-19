@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cineholic.spotlight.entities.Usuario;
-import com.cineholic.spotlight.services.UsuarioService;
+import com.cineholic.spotlight.entities.Customer;
+import com.cineholic.spotlight.services.CustomerService;
 
 @RestController
-@RequestMapping(value = "/usuarios")
-public class UsuarioResource {
+@RequestMapping(value = "/customers")
+public class CustomerResource {
 	
 	@Autowired
-	private UsuarioService service;
+	private CustomerService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuario>> findAll(){
-		List<Usuario> list = service.findAll();
+	public ResponseEntity<List<Customer>> findAll(){
+		List<Customer> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Usuario> findById(@PathVariable Long id){
-		Usuario obj = service.findById(id);
+	public ResponseEntity<Customer> findById(@PathVariable Long id){
+		Customer obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

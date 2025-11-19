@@ -14,8 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Sala implements Serializable{
-	
+public class Room implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,64 +22,55 @@ public class Sala implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String numero;
-	private Integer capacidade;
+	private String number;
+	private Integer capacity;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "sala")
-	private List<Sessao> sessoes = new ArrayList<>();
+	@OneToMany(mappedBy = "room")
+	private List<Session> sessions = new ArrayList<>();
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "sala")
-	private List<Assento> assentos = new ArrayList<>();
+	@OneToMany(mappedBy = "room")
+	private List<Seat> seats = new ArrayList<>();
 	
-	public Sala() {
-		
+	public Room() {
 	}
 
-	public Sala(Long id, String numero, Integer capacidade) {
+	public Room(Long id, String number, Integer capacity) {
 		super();
 		this.id = id;
-		this.numero = numero;
-		this.capacidade = capacidade;
+		this.number = number;
+		this.capacity = capacity;
 	}
-
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-	public String getNumero() {
-		return numero;
+	public String getNumber() {
+		return number;
 	}
 
-
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-
-	public Integer getCapacidade() {
-		return capacidade;
+	public Integer getCapacity() {
+		return capacity;
 	}
 
-
-	public void setCapacidade(Integer capacidade) {
-		this.capacidade = capacidade;
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
 	}
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(capacidade, id, numero);
+		return Objects.hash(capacity, id, number);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -90,10 +80,8 @@ public class Sala implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Sala other = (Sala) obj;
-		return Objects.equals(capacidade, other.capacidade) && Objects.equals(id, other.id)
-				&& Objects.equals(numero, other.numero);
+		Room other = (Room) obj;
+		return Objects.equals(capacity, other.capacity) && Objects.equals(id, other.id)
+				&& Objects.equals(number, other.number);
 	}
-	
-	
 }

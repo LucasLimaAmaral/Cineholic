@@ -10,8 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Assento implements Serializable{
-	
+public class Seat implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,13 +18,12 @@ public class Assento implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer numero;
+	private Integer number;
 	
 	@ManyToOne
-	private Sala sala;
+	private Room room;
 	
-	public Assento() {
-		
+	public Seat() {
 	}
 
 	public Long getId() {
@@ -36,29 +34,25 @@ public class Assento implements Serializable{
 		this.id = id;
 	}
 
-	public Integer getNumero() {
-		return numero;
+	public Integer getNumber() {
+		return number;
 	}
 
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setNumber(Integer number) {
+		this.number = number;
 	}
 
-	public Sala getSala() {
-		return sala;
+	public Room getRoom() {
+		return room;
 	}
 
-	public void setSala(Sala sala) {
-		this.sala = sala;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, numero, sala);
+		return Objects.hash(id, number, room);
 	}
 
 	@Override
@@ -69,10 +63,7 @@ public class Assento implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Assento other = (Assento) obj;
-		return Objects.equals(id, other.id) && Objects.equals(numero, other.numero) && Objects.equals(sala, other.sala);
+		Seat other = (Seat) obj;
+		return Objects.equals(id, other.id) && Objects.equals(number, other.number) && Objects.equals(room, other.room);
 	}
-
-	
-	
 }

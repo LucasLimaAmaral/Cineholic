@@ -6,21 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cineholic.spotlight.entities.Sala;
-import com.cineholic.spotlight.repositories.SalaRepository;
+import com.cineholic.spotlight.entities.Room;
+import com.cineholic.spotlight.repositories.RoomRepository;
 
 @Service
-public class SalaService {
+public class RoomService {
 	
 	@Autowired
-	private SalaRepository repository;
+	private RoomRepository repository;
 	
-	public List<Sala> findAll(){
+	public List<Room> findAll(){
 		return repository.findAll();
 	}
 	
-	public Sala findById(Long id) {
-		Optional<Sala> obg = repository.findById(id);
+	public Room findById(Long id) {
+		Optional<Room> obg = repository.findById(id);
 		return obg.get();
 	}
 }

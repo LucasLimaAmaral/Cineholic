@@ -8,41 +8,41 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.cineholic.spotlight.entities.Assento;
-import com.cineholic.spotlight.entities.Filme;
-import com.cineholic.spotlight.entities.Ingresso;
-import com.cineholic.spotlight.entities.Sala;
-import com.cineholic.spotlight.entities.Sessao;
-import com.cineholic.spotlight.entities.Usuario;
-import com.cineholic.spotlight.enums.Genero;
-import com.cineholic.spotlight.repositories.AssentoRepository;
-import com.cineholic.spotlight.repositories.FilmeRepository;
-import com.cineholic.spotlight.repositories.IngressoRepository;
-import com.cineholic.spotlight.repositories.SalaRepository;
-import com.cineholic.spotlight.repositories.SessaoRepository;
-import com.cineholic.spotlight.repositories.UsuarioRepository;
+import com.cineholic.spotlight.entities.Seat;
+import com.cineholic.spotlight.entities.Movie;
+import com.cineholic.spotlight.entities.Ticket;
+import com.cineholic.spotlight.entities.Room;
+import com.cineholic.spotlight.entities.Session;
+import com.cineholic.spotlight.entities.Customer;
+import com.cineholic.spotlight.enums.Genre;
+import com.cineholic.spotlight.repositories.SeatRepository;
+import com.cineholic.spotlight.repositories.MovieRepository;
+import com.cineholic.spotlight.repositories.TicketRepository;
+import com.cineholic.spotlight.repositories.RoomRepository;
+import com.cineholic.spotlight.repositories.SessionRepository;
+import com.cineholic.spotlight.repositories.CustomerRepository;
 
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
-	private FilmeRepository filmeRepository;
+	private MovieRepository filmeRepository;
 
 	@Autowired
-	private SalaRepository salaRepository;
+	private RoomRepository salaRepository;
 
 	@Autowired
-	private AssentoRepository assentoRepository;
+	private SeatRepository assentoRepository;
 
 	@Autowired
-	private SessaoRepository sessaoRepository;
+	private SessionRepository sessaoRepository;
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private CustomerRepository usuarioRepository;
 
 	@Autowired
-	private IngressoRepository ingressoRepository;
+	private TicketRepository ingressoRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -50,22 +50,22 @@ public class TestConfig implements CommandLineRunner{
 		// ------------------------------------------
 		// 1. SALAS (Criar salas primeiro para por assentos)
 		// ------------------------------------------
-		Sala sala1 = new Sala(null, "Sala 01 (IMAX)", 100);
-		Sala sala2 = new Sala(null, "Sala 02 (VIP)", 30);
-		Sala sala3 = new Sala(null, "Sala 03 (Standard)", 60);
+		Room sala1 = new Room(null, "Sala 01 (IMAX)", 100);
+		Room sala2 = new Room(null, "Sala 02 (VIP)", 30);
+		Room sala3 = new Room(null, "Sala 03 (Standard)", 60);
 
 		salaRepository.saveAll(Arrays.asList(sala1, sala2, sala3));
 
 		// ------------------------------------------
 		// 2. FILMES (Seus exemplos)
 		// ------------------------------------------
-		Filme filme1 = new Filme(null, "A Origem", Genero.FICCAO_CIENTIFICA, 148,
+		Movie filme1 = new Movie(null, "A Origem", Genre.FICCAO_CIENTIFICA, 148,
 				"Um ladrão que rouba segredos...", "https://img.cinema.com/posters/a-origem.jpg");
-		Filme filme2 = new Filme(null, "O Rei Leão", Genero.ANIMACAO, 88, 
+		Movie filme2 = new Movie(null, "O Rei Leão", Genre.ANIMACAO, 88, 
 				"O príncipe leão Simba...", "https://img.cinema.com/posters/rei-leao.jpg");
-		Filme filme3 = new Filme(null, "O Poderoso Chefão", Genero.DRAMA, 175, 
+		Movie filme3 = new Movie(null, "O Poderoso Chefão", Genre.DRAMA, 175, 
 				"O patriarca idoso...", "https://img.cinema.com/posters/godfather.jpg");
-		Filme filme4 = new Filme(null, "O Iluminado", Genero.TERROR, 146, 
+		Movie filme4 = new Movie(null, "O Iluminado", Genre.TERROR, 146, 
 				"Uma família se dirige a um hotel...", "https://img.cinema.com/posters/shining.jpg");
 
 		filmeRepository.saveAll(Arrays.asList(filme1, filme2, filme3, filme4));
@@ -73,9 +73,9 @@ public class TestConfig implements CommandLineRunner{
 		// ------------------------------------------
 		// 3. USUÁRIOS (Clientes)
 		// ------------------------------------------
-		Usuario u1 = new Usuario(null, "Maria Silva", "maria@gmail.com", "123456");
-		Usuario u2 = new Usuario(null, "Joao Souza", "joao@gmail.com", "123456");
-		Usuario u3 = new Usuario(null, "Ana Clara", "ana@gmail.com", "123456");
+		Customer u1 = new Customer(null, "Maria Silva", "maria@gmail.com", "123456");
+		Customer u2 = new Customer(null, "Joao Souza", "joao@gmail.com", "123456");
+		Customer u3 = new Customer(null, "Ana Clara", "ana@gmail.com", "123456");
 
 		usuarioRepository.saveAll(Arrays.asList(u1, u2, u3));
 
@@ -83,13 +83,13 @@ public class TestConfig implements CommandLineRunner{
 		// 4. ASSENTOS (Ligados às Salas)
 		// ------------------------------------------
 		// Assentos da Sala 1 (Criando apenas alguns para teste)
-		Assento s1_a1 = new Assento(); s1_a1.setNumero(1); s1_a1.setSala(sala1);
-		Assento s1_a2 = new Assento(); s1_a2.setNumero(2); s1_a2.setSala(sala1);
-		Assento s1_a3 = new Assento(); s1_a3.setNumero(3); s1_a3.setSala(sala1);
+		Seat s1_a1 = new Seat(); s1_a1.setNumber(1); s1_a1.setRoom(sala1);
+		Seat s1_a2 = new Seat(); s1_a2.setNumber(2); s1_a2.setRoom(sala1);
+		Seat s1_a3 = new Seat(); s1_a3.setNumber(3); s1_a3.setRoom(sala1);
 		
 		// Assentos da Sala 2
-		Assento s2_a1 = new Assento(); s2_a1.setNumero(1); s2_a1.setSala(sala2);
-		Assento s2_a2 = new Assento(); s2_a2.setNumero(2); s2_a2.setSala(sala2);
+		Seat s2_a1 = new Seat(); s2_a1.setNumber(1); s2_a1.setRoom(sala2);
+		Seat s2_a2 = new Seat(); s2_a2.setNumber(2); s2_a2.setRoom(sala2);
 
 		assentoRepository.saveAll(Arrays.asList(s1_a1, s1_a2, s1_a3, s2_a1, s2_a2));
 
@@ -97,13 +97,13 @@ public class TestConfig implements CommandLineRunner{
 		// 5. SESSÕES (Ligando Filme + Sala + Horário)
 		// ------------------------------------------
 		// A Origem na Sala 1 hoje às 14:00
-		Sessao sessao1 = new Sessao(null, LocalDateTime.parse("2023-11-20T14:00:00"), 25.50, filme1, sala1, null);
+		Session sessao1 = new Session(null, LocalDateTime.parse("2023-11-20T14:00:00"), 25.50, filme1, sala1);
 		
 		// O Rei Leão na Sala 2 hoje às 16:00
-		Sessao sessao2 = new Sessao(null, LocalDateTime.parse("2023-11-20T16:00:00"), 50.00, filme2, sala2, null);
+		Session sessao2 = new Session(null, LocalDateTime.parse("2023-11-20T16:00:00"), 50.00, filme2, sala2);
 		
 		// O Poderoso Chefão na Sala 1 amanhã às 20:00
-		Sessao sessao3 = new Sessao(null, LocalDateTime.parse("2023-11-21T20:00:00"), 30.00, filme3, sala1, null);
+		Session sessao3 = new Session(null, LocalDateTime.parse("2023-11-21T20:00:00"), 30.00, filme3, sala1);
 
 		sessaoRepository.saveAll(Arrays.asList(sessao1, sessao2, sessao3));
 
@@ -111,13 +111,13 @@ public class TestConfig implements CommandLineRunner{
 		// 6. INGRESSOS (Vendas Realizadas)
 		// ------------------------------------------
 		// Maria comprou ingresso para A Origem (Sessao 1), cadeira 1
-		Ingresso i1 = new Ingresso(null, sessao1, s1_a1, u1);
+		Ticket i1 = new Ticket(null, sessao1, s1_a1, u1);
 		
 		// Joao comprou ingresso para A Origem (Sessao 1), cadeira 2
-		Ingresso i2 = new Ingresso(null, sessao1, s1_a2, u2);
+		Ticket i2 = new Ticket(null, sessao1, s1_a2, u2);
 		
 		// Ana comprou ingresso para O Rei Leão (Sessao 2), cadeira 1
-		Ingresso i3 = new Ingresso(null, sessao2, s2_a1, u3);
+		Ticket i3 = new Ticket(null, sessao2, s2_a1, u3);
 
 		ingressoRepository.saveAll(Arrays.asList(i1, i2, i3));
 		

@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cineholic.spotlight.entities.Assento;
-import com.cineholic.spotlight.services.AssentoService;
+import com.cineholic.spotlight.entities.Room;
+import com.cineholic.spotlight.services.RoomService;
 
 @RestController
-@RequestMapping(value = "/assentos")
-public class AssentoResource {
+@RequestMapping(value = "/rooms")
+public class RoomResource {
 	
 	@Autowired
-	private AssentoService service;
+	private RoomService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Assento>> findAll(){
-		List<Assento> list = service.findAll();
+	public ResponseEntity<List<Room>> findAll(){
+		List<Room> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Assento> findById(@PathVariable Long id){
-		Assento obj = service.findById(id);
+	public ResponseEntity<Room> findById(@PathVariable Long id){
+		Room obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

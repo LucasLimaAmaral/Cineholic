@@ -14,33 +14,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Usuario implements Serializable{
-	
-	
+public class Customer implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String nome;
+	private String name;
 	private String email;
-	private String senha;
+	private String password;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "usuario")
-	private List<Ingresso> ingressos = new ArrayList<>();
+	@OneToMany(mappedBy = "customer")
+	private List<Ticket> tickets = new ArrayList<>();
 	
-	public Usuario() {
-		
+	public Customer() {
 	}
 
-	public Usuario(Long id, String nome, String email, String senha) {
+	public Customer(Long id, String name, String email, String password) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.name = name;
 		this.email = email;
-		this.senha = senha;
+		this.password = password;
 	}
 
 	public Long getId() {
@@ -51,12 +49,12 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -67,16 +65,16 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public List<Ingresso> getIngressos() {
-		return ingressos;
+	public List<Ticket> getTickets() { 
+		return tickets;
 	}
 
 	@Override
@@ -92,9 +90,7 @@ public class Usuario implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Usuario other = (Usuario) obj;
+		Customer other = (Customer) obj;
 		return Objects.equals(email, other.email) && Objects.equals(id, other.id);
 	}
-
-	
 }

@@ -6,21 +6,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cineholic.spotlight.entities.Filme;
-import com.cineholic.spotlight.repositories.FilmeRepository;
+import com.cineholic.spotlight.entities.Movie;
+import com.cineholic.spotlight.repositories.MovieRepository;
 
 @Service
-public class FilmeService {
+public class MovieService {
 	
 	@Autowired
-	private FilmeRepository repository;
+	private MovieRepository repository;
 	
-	public List<Filme> findAll(){
+	public List<Movie> findAll(){
 		return repository.findAll();
 	}
 	
-	public Filme findById(Long id) {
-		Optional<Filme> obg = repository.findById(id);
+	public Movie findById(Long id) {
+		Optional<Movie> obg = repository.findById(id);
 		return obg.get();
 	}
 }

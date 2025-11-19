@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cineholic.spotlight.entities.Filme;
-import com.cineholic.spotlight.services.FilmeService;
+import com.cineholic.spotlight.entities.Session;
+import com.cineholic.spotlight.services.SessionService;
 
 @RestController
-@RequestMapping(value = "/filmes")
-public class FilmeResource {
+@RequestMapping(value = "/sessions")
+public class SessionResource {
 	
 	@Autowired
-	private FilmeService service;
+	private SessionService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Filme>> findAll(){
-		List<Filme> list = service.findAll();
+	public ResponseEntity<List<Session>> findAll(){
+		List<Session> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Filme> findById(@PathVariable Long id){
-		Filme obj = service.findById(id);
+	public ResponseEntity<Session> findById(@PathVariable Long id){
+		Session obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }
