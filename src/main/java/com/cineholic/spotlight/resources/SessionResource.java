@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.services.SessionService;
 
@@ -34,6 +35,12 @@ public class SessionResource {
 	@GetMapping(value = "/movie/{id_movie}")
 	public ResponseEntity<List<Session>> findByMovie(@PathVariable Long id_movie){
 		List<Session> list = service.findByMovies(id_movie);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping(value = "/{id}/seatsAvailable")
+	public ResponseEntity<List<Seat>> getSeatsAvailable(@PathVariable Long id){
+		List<Seat> list = service.getSeatsAvailable(id);
 		return ResponseEntity.ok().body(list);
 	}
 }

@@ -52,7 +52,7 @@ public class Seat implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, number, room);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -64,6 +64,8 @@ public class Seat implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Seat other = (Seat) obj;
-		return Objects.equals(id, other.id) && Objects.equals(number, other.number) && Objects.equals(room, other.room);
+		return Objects.equals(id, other.id);
 	}
+
+	
 }

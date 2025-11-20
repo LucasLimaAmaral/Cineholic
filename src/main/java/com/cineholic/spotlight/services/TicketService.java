@@ -23,4 +23,9 @@ public class TicketService {
 		Optional<Ticket> obg = repository.findById(id);
 		return obg.get();
 	}
+	
+	public List<Ticket> findBySession(Long id){
+		return repository.findBySession_id(id);
+	}
+	
 }
