@@ -28,7 +28,6 @@ public class Session implements Serializable {
 	private LocalDateTime moment; 
 	private Double price;         
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "movie_id")
 	private Movie movie;

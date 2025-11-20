@@ -1,8 +1,6 @@
 package com.cineholic.spotlight.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import com.cineholic.spotlight.enums.Genre;
@@ -11,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Movie implements Serializable {
@@ -26,10 +23,7 @@ public class Movie implements Serializable {
 	private Integer genre;
 	private Integer duration;
 	private String synopsis;
-	private String posterUrl; 
-	
-	@OneToMany(mappedBy = "movie")
-	private List<Session> sessions = new ArrayList<>();
+	private String posterUrl;
 	
 	public Movie() {
 	}
@@ -91,14 +85,6 @@ public class Movie implements Serializable {
 
 	public void setPosterUrl(String posterUrl) {
 		this.posterUrl = posterUrl;
-	}
-
-	public List<Session> getSessions() {
-		return sessions;
-	}
-
-	public void setSessions(List<Session> sessions) {
-		this.sessions = sessions;
 	}
 
 	@Override
