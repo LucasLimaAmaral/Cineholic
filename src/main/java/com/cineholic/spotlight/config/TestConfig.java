@@ -98,6 +98,7 @@ public class TestConfig implements CommandLineRunner{
 		// ------------------------------------------
 		// A Origem na Sala 1 hoje às 14:00
 		Session sessao1 = new Session(null, LocalDateTime.parse("2023-11-20T14:00:00"), 25.50, filme1, sala1);
+		Session sessao4 = new Session(null, LocalDateTime.parse("2023-11-20T17:00:00"), 25.55, filme1, sala2);
 		
 		// O Rei Leão na Sala 2 hoje às 16:00
 		Session sessao2 = new Session(null, LocalDateTime.parse("2023-11-20T16:00:00"), 50.00, filme2, sala2);
@@ -105,7 +106,7 @@ public class TestConfig implements CommandLineRunner{
 		// O Poderoso Chefão na Sala 1 amanhã às 20:00
 		Session sessao3 = new Session(null, LocalDateTime.parse("2023-11-21T20:00:00"), 30.00, filme3, sala1);
 
-		sessaoRepository.saveAll(Arrays.asList(sessao1, sessao2, sessao3));
+		sessaoRepository.saveAll(Arrays.asList(sessao1, sessao2, sessao3, sessao4));
 
 		// ------------------------------------------
 		// 6. INGRESSOS (Vendas Realizadas)

@@ -30,4 +30,5 @@ public class MovieResource {
 		Movie obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
+	
 }

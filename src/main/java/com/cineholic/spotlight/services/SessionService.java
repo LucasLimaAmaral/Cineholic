@@ -23,4 +23,8 @@ public class SessionService {
 		Optional<Session> obg = repository.findById(id);
 		return obg.get();
 	}
+	
+	public List<Session> findByMovies(Long id_movie) {
+		return repository.findByMovie_id(id_movie);
+	}
 }
