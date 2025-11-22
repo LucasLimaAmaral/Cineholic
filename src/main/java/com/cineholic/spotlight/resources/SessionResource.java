@@ -33,8 +33,8 @@ public class SessionResource {
 	}
 	
 	@GetMapping(value = "/movie/{id_movie}")
-	public ResponseEntity<List<Session>> findByMovie(@PathVariable Long id_movie){
-		List<Session> list = service.findByMovies(id_movie);
+	public ResponseEntity<List<Session>> findByMovie(@PathVariable Long movieId){
+		List<Session> list = service.findByMovies(movieId);
 		return ResponseEntity.ok().body(list);
 	}
 	

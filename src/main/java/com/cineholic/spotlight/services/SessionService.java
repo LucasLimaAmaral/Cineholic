@@ -36,8 +36,8 @@ public class SessionService {
 		return obg.get();
 	}
 
-	public List<Session> findByMovies(Long id_movie) {
-		return repository.findByMovie_id(id_movie);
+	public List<Session> findByMovies(Long movieId) {
+		return repository.findByMovie_id(movieId);
 	}
 
 	public List<Seat> getSeatsAvailable(Long id) {
@@ -62,5 +62,13 @@ public class SessionService {
 		return tickets.stream()
 				.map(Ticket::getSeat)
 				.collect(Collectors.toList());
+	}
+	
+	public boolean isOccupiedSeat(Long id, Long seatId) {
+		Set<Long> oc = getOccupiedSeats(id).stream()
+				.map(seat -> seat.getId())
+				.collect(Collectors.toSet());
+		
+		return oc.contains(seatId);
 	}
 }

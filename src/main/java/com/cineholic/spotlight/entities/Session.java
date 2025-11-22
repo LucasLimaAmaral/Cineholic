@@ -29,11 +29,11 @@ public class Session implements Serializable {
 	private Double price;         
 	
 	@ManyToOne
-	@JoinColumn(name = "movie_id")
+	@JoinColumn(name = "movieId")
 	private Movie movie;
 	
 	@ManyToOne
-	@JoinColumn(name = "room_id")
+	@JoinColumn(name = "roomId")
 	private Room room;
 	
 	@JsonIgnore

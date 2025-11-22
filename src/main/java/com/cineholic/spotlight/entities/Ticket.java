@@ -20,15 +20,15 @@ public class Ticket implements Serializable {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "session_id")
+	@JoinColumn(name = "sessionId")
 	private Session session;
 	
 	@ManyToOne
-	@JoinColumn(name = "seat_id")
+	@JoinColumn(name = "seatId")
 	private Seat seat;
 	
 	@ManyToOne
-	@JoinColumn(name = "customer_id")
+	@JoinColumn(name = "customerId")
 	private Customer customer;
 	
 	public Ticket() {

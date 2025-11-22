@@ -24,7 +24,7 @@ public class SeatService {
 		return obg.get();
 	}
 	
-	public List<Seat> findByRoom(Long room_id){
-		return repository.findByRoom_id(room_id);
+	public List<Seat> findByRoom(Long roomId){
+		return repository.findByRoom_id(roomId);
 	}
 }
