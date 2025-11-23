@@ -1,5 +1,6 @@
 package com.cineholic.spotlight.services;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.entities.Ticket;
 import com.cineholic.spotlight.repositories.SessionRepository;
+import com.cineholic.spotlight.validators.SessionValidator;
 
 @Service
 public class SessionService {
@@ -26,7 +28,9 @@ public class SessionService {
 
 	@Autowired
 	private TicketService ticketService;
-
+	
+	private SessionValidator validator;
+	
 	public List<Session> findAll() {
 		return repository.findAll();
 	}
@@ -70,5 +74,11 @@ public class SessionService {
 				.collect(Collectors.toSet());
 		
 		return oc.contains(seatId);
+	}
+	
+	public void validAddSession(Long roomId, LocalDateTime data, Double price, Long movieId) {
+		
+		repository.save(validator.validAddSession(roomId, data, price, movieId));
+		
 	}
 }

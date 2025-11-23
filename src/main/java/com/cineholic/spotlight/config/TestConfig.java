@@ -88,14 +88,14 @@ public class TestConfig implements CommandLineRunner{
 		List<Seat> todosAssentos = new ArrayList<>();
 
 		// Assentos da Sala 1
-		Seat s1_a1 = new Seat(); s1_a1.setNumber(1); s1_a1.setRoom(sala1);
-		Seat s1_a2 = new Seat(); s1_a2.setNumber(2); s1_a2.setRoom(sala1);
-		Seat s1_a3 = new Seat(); s1_a3.setNumber(3); s1_a3.setRoom(sala1);
+		Seat s1_a1 = new Seat(); s1_a1.setNumber("A1"); s1_a1.setRoom(sala1);
+		Seat s1_a2 = new Seat(); s1_a2.setNumber("A2"); s1_a2.setRoom(sala1);
+		Seat s1_a3 = new Seat(); s1_a3.setNumber("A3"); s1_a3.setRoom(sala1);
 		todosAssentos.addAll(Arrays.asList(s1_a1, s1_a2, s1_a3));
 		
 		// Assentos da Sala 2
-		Seat s2_a1 = new Seat(); s2_a1.setNumber(1); s2_a1.setRoom(sala2);
-		Seat s2_a2 = new Seat(); s2_a2.setNumber(2); s2_a2.setRoom(sala2);
+		Seat s2_a1 = new Seat(); s2_a1.setNumber("A1"); s2_a1.setRoom(sala2);
+		Seat s2_a2 = new Seat(); s2_a2.setNumber("A2"); s2_a2.setRoom(sala2);
 		todosAssentos.addAll(Arrays.asList(s2_a1, s2_a2));
 
 		// --- NOVO: Assentos da Sala 3 (Para o seu Teste) ---
@@ -103,7 +103,7 @@ public class TestConfig implements CommandLineRunner{
 		List<Seat> assentosSala3 = new ArrayList<>();
 		for(int i=1; i<=10; i++) {
 			Seat s = new Seat();
-			s.setNumber(i); // Cadeira 1, 2, 3...
+			s.setNumber("A" + String.valueOf(i)); // Cadeira 1, 2, 3...
 			s.setRoom(sala3);
 			assentosSala3.add(s);
 			todosAssentos.add(s);
