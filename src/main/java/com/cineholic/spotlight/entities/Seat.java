@@ -18,12 +18,18 @@ public class Seat implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer number;
+	private String number;
 	
 	@ManyToOne
 	private Room room;
 	
 	public Seat() {
+	}
+	
+	public Seat(String number, Room room) {
+		super();
+		this.number = number;
+		this.room = room;
 	}
 
 	public Long getId() {
@@ -34,11 +40,11 @@ public class Seat implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Integer number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
