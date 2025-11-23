@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cineholic.spotlight.dtos.SessionDTO;
+import com.cineholic.spotlight.dtos.SessionResponseDTO;
 import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.entities.Ticket;
@@ -29,6 +31,7 @@ public class SessionService {
 	@Autowired
 	private TicketService ticketService;
 	
+	@Autowired
 	private SessionValidator validator;
 	
 	public List<Session> findAll() {
@@ -68,6 +71,7 @@ public class SessionService {
 				.collect(Collectors.toList());
 	}
 	
+	//ainda nao utilizado no projeto
 	public boolean isOccupiedSeat(Long id, Long seatId) {
 		Set<Long> oc = getOccupiedSeats(id).stream()
 				.map(seat -> seat.getId())
@@ -76,9 +80,16 @@ public class SessionService {
 		return oc.contains(seatId);
 	}
 	
-	public void validAddSession(Long roomId, LocalDateTime data, Double price, Long movieId) {
+	
+	public SessionResponseDTO addSession(SessionDTO session) {
+		
+		Long roomId = session.getRoomId();
+		Long movieId = session.getMovieId();
+		LocalDateTime data = session.getMoment();
+		Double price = session.getPrice();
 		
 		repository.save(validator.validAddSession(roomId, data, price, movieId));
 		
+		return new SessionResponseDTO("New session has been created");
 	}
 }

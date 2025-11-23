@@ -6,12 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cineholic.spotlight.dtos.SessionDTO;
+import com.cineholic.spotlight.dtos.SessionResponseDTO;
 import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.services.SessionService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/sessions")
@@ -42,5 +48,12 @@ public class SessionResource {
 	public ResponseEntity<List<Seat>> getSeatsAvailable(@PathVariable Long id){
 		List<Seat> list = service.getSeatsAvailable(id);
 		return ResponseEntity.ok().body(list);
+	}
+	
+	@PostMapping(value = "/add")
+	public ResponseEntity<SessionResponseDTO> postSession(@RequestBody @Valid SessionDTO request) {
+		SessionResponseDTO response = service.addSession(request);
+		
+		return ResponseEntity.status(org.springframework.http.HttpStatus.CREATED).body(response);
 	}
 }

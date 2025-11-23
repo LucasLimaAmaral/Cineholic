@@ -19,7 +19,7 @@ public interface SessionRepository extends JpaRepository<Session, Long>{
 			INNER JOIN movie m ON s.movieId = m.id
 			WHERE s.roomId = :roomId
 			AND :newStart < DATE_ADD(s.moment, interval (m.duration + 30) MINUTE)
-			AND :newEnd > s.start
+			AND :newEnd > s.moment
 			""", nativeQuery = true)
 	boolean hasConflict(@Param("roomId") Long roomId, 
 			@Param("newStart") LocalDateTime newStart, 
