@@ -16,9 +16,9 @@ public interface SessionRepository extends JpaRepository<Session, Long>{
 	@Query(value = """
 			SELECT COUNT(*) > 0
 			FROM session s
-			INNER JOIN movie m ON s.movieId = m.id
-			WHERE s.roomId = :roomId
-			AND :newStart < DATE_ADD(s.moment, interval (m.duration + 30) MINUTE)
+			INNER JOIN movie m ON s.movie_id = m.id
+			WHERE s.room_id = :roomId
+			AND :newStart < DATEADD(MINUTE, (m.duration + 30), s.moment)
 			AND :newEnd > s.moment
 			""", nativeQuery = true)
 	boolean hasConflict(@Param("roomId") Long roomId, 

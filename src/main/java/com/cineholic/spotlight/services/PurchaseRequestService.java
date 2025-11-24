@@ -35,7 +35,7 @@ public class PurchaseRequestService {
 	private SeatRepository seatRepository;
 	
 	
-	@Transactional
+	@Transactional(rollbackOn = Exception.class)
 	public PurchaseResponseDTO processRequest(PurchaseRequestDTO request) {
 		
 		Session session = sessionRepository.findById(request.getSessionId()).orElseThrow(() -> new RuntimeException("Session not found"));
@@ -46,19 +46,20 @@ public class PurchaseRequestService {
 		
 		for(Long seatId : request.getSeatsId()) {
 			
+			Seat seat = seatRepository.findById(seatId).orElseThrow(() -> new RuntimeException("Seat not found"));
+			
 			if(ticketRepository.existsBySessionIdAndSeatId(request.getSessionId(), seatId)) {
 				throw new RuntimeException("That seat is occupied: " + request.getSeatsId());
 			}
-			
-			Seat seat = seatRepository.findById(seatId).orElseThrow(() -> new RuntimeException("Seat not found"));
 			
 			
 			Ticket ti = new Ticket(null, session, seat, customer);
 			
 			list.add(ti);
 			
-			ticketRepository.save(ti);
 		}
+		
+		ticketRepository.saveAll(list);
 		
 		return new PurchaseResponseDTO("Compra realizada", list);
 	}
