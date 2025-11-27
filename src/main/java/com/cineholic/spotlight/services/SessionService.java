@@ -17,7 +17,7 @@ import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.entities.Ticket;
 import com.cineholic.spotlight.repositories.SessionRepository;
-import com.cineholic.spotlight.validators.SessionValidator;
+import com.cineholic.spotlight.validations.SessionValidator;
 
 @Service
 public class SessionService {

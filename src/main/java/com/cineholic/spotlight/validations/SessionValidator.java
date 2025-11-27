@@ -1,4 +1,4 @@
-package com.cineholic.spotlight.validators;
+package com.cineholic.spotlight.validations;
 
 import java.time.LocalDateTime;
 

@@ -1,0 +1,7 @@
+proximas coisas a fazer
+
+criar endpoints para criar objetos(filme, sala, usuário) -- feito
+spring security -- 
+teste unitario
+front 
+mongodb para nosql

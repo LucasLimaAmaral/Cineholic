@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.cineholic.spotlight.dtos.CustomerDTO;
@@ -16,6 +17,9 @@ public class CustomerService {
 	
 	@Autowired
 	private CustomerRepository repository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	public List<Customer> findAll(){
 		return repository.findAll();
@@ -34,9 +38,9 @@ public class CustomerService {
 		
 		String name = request.getName();
 		String email = request.getEmail();
-		String password = request.getPassword();
+		String hashPassword = passwordEncoder.encode(request.getPassword());
 		
-		Customer newCustomer = repository.save(new Customer(null, name, email, password));
+		Customer newCustomer = repository.save(new Customer(null, name, email, hashPassword));
 		
 		return new CustomerResponseDTO(newCustomer.getName(), newCustomer.getEmail());
 	}
