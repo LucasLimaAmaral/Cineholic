@@ -7,10 +7,15 @@ import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -25,6 +30,12 @@ public class Customer implements Serializable {
 	private String name;
 	private String email;
 	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "customer_roles",
+			joinColumns = @JoinColumn(name = "customer_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private List<Role> roles;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "customer")
@@ -75,6 +86,14 @@ public class Customer implements Serializable {
 
 	public List<Ticket> getTickets() { 
 		return tickets;
+	}
+	
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void addRoles(Role role) {
+		this.roles.add(role);
 	}
 
 	@Override

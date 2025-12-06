@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cineholic.spotlight.dtos.SessionDTO;
-import com.cineholic.spotlight.dtos.SessionResponseDTO;
+import com.cineholic.spotlight.dtos.response.SessionResponseDTO;
 import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.entities.Ticket;

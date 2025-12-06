@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cineholic.spotlight.dtos.CustomerDTO;
-import com.cineholic.spotlight.dtos.CustomerResponseDTO;
+import com.cineholic.spotlight.dtos.response.CustomerResponseDTO;
 import com.cineholic.spotlight.entities.Customer;
 import com.cineholic.spotlight.services.CustomerService;
 

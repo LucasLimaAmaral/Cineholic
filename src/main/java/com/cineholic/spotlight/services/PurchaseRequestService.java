@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cineholic.spotlight.dtos.PurchaseRequestDTO;
-import com.cineholic.spotlight.dtos.PurchaseResponseDTO;
+import com.cineholic.spotlight.dtos.response.PurchaseResponseDTO;
 import com.cineholic.spotlight.entities.Customer;
 import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;

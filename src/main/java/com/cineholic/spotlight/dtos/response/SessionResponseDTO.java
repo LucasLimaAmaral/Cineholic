@@ -1,4 +1,4 @@
-package com.cineholic.spotlight.dtos;
+package com.cineholic.spotlight.dtos.response;
 
 public class SessionResponseDTO {
 	
