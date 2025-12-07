@@ -4,12 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.cineholic.spotlight.entities.Customer;
-import com.cineholic.spotlight.entities.UserDetailsImpl;
+import com.cineholic.spotlight.entities.CustomerDetailsImpl;
 import com.cineholic.spotlight.repositories.CustomerRepository;
 
-public class UserDetailsServiceImpl implements UserDetailsService{
+@Service
+public class CustomerDetailsServiceImpl implements UserDetailsService{
 	
 	@Autowired
 	private CustomerRepository customerRepository;
@@ -17,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Customer customer = customerRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
-		return new UserDetailsImpl(customer);
+		return new CustomerDetailsImpl(customer);
 	}
 	
 }

@@ -8,11 +8,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-public class UserDetailsImpl implements UserDetails{
+public class CustomerDetailsImpl implements UserDetails{
 	
 	private Customer customer;
 	
-	public UserDetailsImpl(Customer customer) {
+	public CustomerDetailsImpl(Customer customer) {
 		this.customer = customer;
 	}
 
