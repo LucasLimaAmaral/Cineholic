@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cineholic.spotlight.dtos.PurchaseResponseDTO;
 import com.cineholic.spotlight.dtos.PurchaseRequestDTO;
-import com.cineholic.spotlight.dtos.response.PurchaseResponseDTO;
 import com.cineholic.spotlight.services.PurchaseRequestService;
 
 import jakarta.validation.Valid;

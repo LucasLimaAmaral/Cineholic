@@ -1,4 +1,4 @@
-package com.cineholic.spotlight.dtos.response;
+package com.cineholic.spotlight.dtos;
 
 public class CustomerResponseDTO {
 	

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cineholic.spotlight.dtos.SessionDTO;
-import com.cineholic.spotlight.dtos.response.SessionResponseDTO;
+import com.cineholic.spotlight.dtos.SessionResponseDTO;
 import com.cineholic.spotlight.entities.Seat;
 import com.cineholic.spotlight.entities.Session;
 import com.cineholic.spotlight.services.SessionService;
